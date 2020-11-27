@@ -25,19 +25,19 @@ jobs:
     - name: Build packs
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku buildpacks:add https://github.com/DataDog/heroku-buildpack-datadog.git
+      run: heroku buildpacks:add https://github.com/DataDog/heroku-buildpack-datadog.git -a ${{ secrets.HEROKU_APP_NAME_STAGING }}
     - name: DD Major
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku config:add DD_AGENT_MAJOR_VERSION=7
+      run: heroku config:add DD_AGENT_MAJOR_VERSION=7 -a ${{ secrets.HEROKU_APP_NAME_STAGING }}
     - name: DD Api
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku config:add DD_API_KEY=babd3c4e99fed841618585c5aaa99d36
+      run: heroku config:add DD_API_KEY=babd3c4e99fed841618585c5aaa99d36 -a ${{ secrets.HEROKU_APP_NAME_STAGING }}
     - name: DD Site
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku config:add DD_SITE=datadoghq.eu
+      run: heroku config:add DD_SITE=datadoghq.eu -a ${{ secrets.HEROKU_APP_NAME_STAGING }}
     - name: Release
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
