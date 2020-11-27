@@ -3,6 +3,9 @@ const photoModel = require('./photo_model');
 
 function route(app) {
   app.get('/', (req, res) => {
+    logger.log('info', 'Requête');
+
+
     const tags = req.query.tags;
     const tagmode = req.query.tagmode;
 
