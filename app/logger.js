@@ -5,7 +5,7 @@ const logger = createLogger({
   exitOnError: false,
   format: format.json(),
   transports: [
-    new transports.File({ filename: `${appRoot}/logs/<NOM_FICHIER>.log` }),
+    new transports.File({ filename: `/logs/<NOM_FICHIER>.log` }),
   ],
 });
 
