@@ -21,7 +21,7 @@ jobs:
     - name: Enable labs
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku labs:enable runtime-dyno-metadata -a $(heroku apps:info|grep ===|cut -d' ' -f2)
+      run: heroku labs:enable runtime-dyno-metadata -a web
     - name: Build packs
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
