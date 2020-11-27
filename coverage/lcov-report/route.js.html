@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>17/17</span>
+        <span class='fraction'>21/28</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>10/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">80% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>4/4</span>
+        <span class='fraction'>4/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>17/17</span>
+        <span class='fraction'>21/28</span>
       </div>
     </div>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -85,11 +85,49 @@
 40
 41
 42
-43</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -105,11 +143,23 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -125,13 +175,35 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const formValidator = require('./form_validator');
 const photoModel = require('./photo_model');
+//const logger = require('./logger'); 
+const express = require('express');
+const {PubSub} = require('@google-cloud/pubsub'); 
 &nbsp;
 function route(app) {
-  app.get('/', (req, res) =&gt; {
+  app.get('/', (req, res) =&gt; { 
+&nbsp;
     const tags = req.query.tags;
     const tagmode = req.query.tagmode;
 &nbsp;
@@ -148,11 +220,23 @@ function route(app) {
       return res.render('index', ejsLocalVariables);
     }
 &nbsp;
+    const name = "";
+&nbsp;
     // validate query parameters
     if (!formValidator.hasValidFlickrAPIParams(tags, tagmode)) {
       ejsLocalVariables.invalidParameters = true;
       return res.render('index', ejsLocalVariables);
     }
+&nbsp;
+    // cloud storage
+   /* const options = {
+      action: 'read',
+      expires: moment().add(2, 'days').unix() * 1000
+     };
+     const signedUrls = await storage
+      .bucket(process.env.STORAGE_BUCKET)
+      .file(name)
+      .getSignedUrl(options);*/
 &nbsp;
     // get photos from flickr public feed api
     return photoModel
@@ -166,6 +250,24 @@ function route(app) {
         return res.status(500).send({ error });
       });
   });
+&nbsp;
+  app.post('/zip', <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {   
+    const tags = <span class="cstat-no" title="statement not covered" >req.query.tags;</span>
+    
+    const env = <span class="cstat-no" title="statement not covered" >require('../project-id-9307823999230114798-b3157dde6a00');</span>
+    const pubsub = <span class="cstat-no" title="statement not covered" >new PubSub({</span>
+      projectId: env['project_id'],
+      credentials: env
+    });
+    const topic = <span class="cstat-no" title="statement not covered" >pubsub.topic("loris"); </span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    console.log(tags);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    topic.publish(Buffer.from(tags));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    res.end("ok");</span>
+&nbsp;
+  });
 }
 &nbsp;
 module.exports = route;
@@ -175,7 +277,7 @@ module.exports = route;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Oct 10 2018 20:55:51 GMT+0200 (CEST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Nov 27 2020 14:38:06 GMT+0100 (GMT+01:00)
 </div>
 </div>
 <script src="prettify.js"></script>

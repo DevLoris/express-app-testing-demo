@@ -1,15 +1,14 @@
 const express = require('express');
 const favicon = require('serve-favicon');
-const path = require('path');
+const path = require('path'); 
+
+const dd_options = {
+  'response_code':true,
+  'tags': ['app:my_app']
+}
+const connect_datadog = require('connect-datadog')(dd_options);
 
 const app = express();
-
-var dd_options = {
-'response_code':true,
-'tags': ['app:my_app']
-}
-var connect_datadog = require('connect-datadog')(dd_options);
-
 
 
 // public assets
@@ -29,6 +28,6 @@ require('./route')(app);
 // server
 const port = process.env.PORT || 3000;
 app.server = app.listen(port);
-console.log(`listening on port ${port}`);
+console.log(`listening on port ${port}`); 
 
 module.exports = app;

@@ -18,7 +18,10 @@
           </li>
         <% }) %>
       </ul>
-
+      <form action="/zip?tags=<%= tagsParameter %>" method="post"> 
+        <button type="submit" class="btn btn-primary">Télécharger</button>
+      </form>
+ 
     <% } else { %>
       <div class="alert alert-info"><strong>No results</strong></div>
     <% } %>

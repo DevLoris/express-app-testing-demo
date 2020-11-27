@@ -9,19 +9,27 @@
   "main": "app/server.js",
   "scripts": {
     "start": "nodemon app/server.js",
+    "worker": "nodemon app/worker.js",
     "test": "npm run jest",
     "test:e2e": "jest --runInBand e2e_tests/*.test.js",
-    "jest": "jest --coverage",
+    "jest": "jest --coverage --forceExit",
     "lint": "eslint app/** e2e_tests/*",
     "prettier": "prettier --write app/*.js app/__{tests,mocks}__/*.js e2e_tests/*.js"
   },
   "dependencies": {
+    "@google-cloud/pubsub": "^2.6.0",
+    "@google-cloud/storage": "^5.5.0",
     "connect-datadog": "0.0.9",
     "ejs": "~2.5.7",
     "express": "~4.16.2",
+    "firebase-admin": "^9.4.1",
     "got": "^8.0.1",
+    "moment": "^2.29.1",
+    "request": "^2.88.2",
     "serve-favicon": "^2.4.5",
-    "winston": "^3.3.3"
+    "sha1": "^1.1.1",
+    "winston": "^3.3.3",
+    "zip-stream": "^4.0.4"
   },
   "devDependencies": {
     "eslint": "^4.12.1",

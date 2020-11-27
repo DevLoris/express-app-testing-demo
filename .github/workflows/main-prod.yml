@@ -18,6 +18,22 @@ jobs:
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: heroku container:push -a ${{ secrets.HEROKU_APP_NAME_PRODUCTION }} web 
+    - name: Enable labs
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku labs:enable runtime-dyno-metadata -a ${{ secrets.HEROKU_APP_NAME_PRODUCTION }}
+    - name: DD Major
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku config:add DD_AGENT_MAJOR_VERSION=7 -a ${{ secrets.HEROKU_APP_NAME_PRODUCTION }}
+    - name: DD Api
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku config:add DD_API_KEY=babd3c4e99fed841618585c5aaa99d36 -a ${{ secrets.HEROKU_APP_NAME_PRODUCTION }}
+    - name: DD Site
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku config:add DD_SITE=datadoghq.eu -a ${{ secrets.HEROKU_APP_NAME_PRODUCTION }}
     - name: Release
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
