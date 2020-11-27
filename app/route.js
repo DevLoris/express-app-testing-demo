@@ -1,11 +1,12 @@
 const formValidator = require('./form_validator');
 const photoModel = require('./photo_model');
-const logger = require('./logger');
+//const logger = require('./logger');
 
 function route(app) {
   app.get('/', (req, res) => {
-    logger.log('info', 'Requête');
+  //  logger.log('info', 'Requête');
 
+    console.log("Peut être ?");
 
     const tags = req.query.tags;
     const tagmode = req.query.tagmode;
